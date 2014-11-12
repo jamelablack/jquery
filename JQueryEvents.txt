@@ -1,0 +1,297 @@
+
+Review of jQuery Events
+
+You know a lot about jQuery events already, but it never hurts to review the basics.
+
+The setup almost always looks like this:
+
+$(document).ready(function() {
+    $('thingToTouch').event(function() {
+        $('thingToAffect').effect();
+    });
+});
+
+where "thing to touch" is the HTML element you'll click on, hover over, or otherwise interact with, and "thing to affect" is the HTML element that fades away, changes size, or undergoes some other transformation.
+
+Sometimes these elements are one and the same—you might hover over a <div> to change its opacity. Other times, you might interact with a separate element; for example, you might click on a button to resize a <div>.
+
+Sometimes if you want an effect to occur right away, without an event like .click() or .hover(), you'll skip the second line in the above:
+
+$(document).ready(function() {
+    $('thingToAffect').effect();
+});
+
+____
+
+
+Cutting to the Chase
+
+Let's quickly review how to trigger an effect without a special event handler like .click()—we just want our effect to happen as soon as our document is .ready().
+
+Remember: practice makes perfect!
+
+Answer:
+$(document).ready(function(){
+
+   $('div').fadeOut('fast');
+});
+____
+
+Adding an Event Handler
+
+Great! Now let's review how to make something happen with an event handler. In this case, we'll use .click().
+
+Answer:
+$(document).ready(function() {
+    $('div').click(function() {
+        $(this).fadeOut('fast');
+    
+    });
+});
+____
+
+
+The .dblclick() Event
+
+Now that we've reviewed our jQuery event handlers, let's learn a new one.
+
+We might want to cause a jQuery effect when a user double clicks on an element, rather than just single-clicking. We can do this with the .dblclick() event handler.
+Instructions
+
+Use the .dblclick() handler to make our 'div' .fadeOut()s 'fast'. Make sure to double-click on your div to see the effect!
+?
+Hint
+
+Your code should look something like this:
+
+$(document).ready(function() {
+    $('elem').event(function() {
+        $(this).effect('speed');
+    });
+});
+
+Where 'elem' is the HTML element you want to click, event is your .dblclick() event, effect is your fadeOut, and your 'speed' is 'fast'!
+
+Answer:
+$(document).ready(function() {
+
+    $('div').dblclick(function() {
+    
+        $(this).fadeOut('fast');
+    
+    });
+
+}); 
+
+_____
+
+
+Hover
+
+What if you wanted to create an effect when your mouse is on top of an object, then have that effect vanish when your mouse moved away? You might notice this effect in use on many site's navigation bars!
+
+$('div').hover(
+    function(){
+      $(this).addClass('highlight');
+   },
+   function(){
+      $(this).removeClass('highlight');
+   }
+);
+
+    We first select the element we want to modify $('div')
+    Secondly notice that our hover effect is able to take two functions(){} separated by a comma. The comma is very important!
+    The first function(){} we pass will be run when we first mouse over our target. Here we apply a class of highlight
+    The second function(){} will be called when our mouse leaves the object. This is where we remove the class highlight
+
+Your second function(){} doesn't have to be the opposite of the first function(){}, but it would be very common!
+Instructions
+
+We're ready to apply a hover effect to our site's navigation bar
+
+    In script.js use your selector to target our menu items
+    When we hover over the menu item, let's apply a class of active
+    When our mouse leaves the menu item, let's remove the active class
+
+?
+Hint
+
+Your code should look very close to the example, except we're going to do
+
+$(this).addClass('active');
+
+Answer:
+$(document).ready(function(){
+
+  $('div').hover(
+    function(){
+        $(this).addClass('active');
+    },
+    function(){
+        $(this).removeClass('active');
+    }
+  );
+
+});
+
+______
+
+
+
+Let's .focus()!
+
+Another event we can make use of is .focus(). We say an element has focus when we click on it or tab over to it. If you've ever filled out a form on a web page and seen how each text box lights up when you tab to it or click on it, you've seen focus in action!
+
+The .focus() event handler only works on elements that can receive focus—the list of these elements is a bit vague, but HTML elements like <textarea>s and <input>s are the usual suspects.
+
+Check out the form we've set up in the Result tab. If you click on the input field, you'll see it automatically highlights in a delightful baby blue. Too bad baby blue is for babies! We want our highlighting to be red.
+
+We can do this with two tools: .focus() and our .css() function from the last section. We want to write a bit of jQuery code that will change our 'input''s 'outline-color' to 'red' when it gains focus.
+Instructions
+
+In script.js, get your document .ready(). Do two things:
+
+    Turn 'input' into a jQuery element and call the .focus() event handler on it.
+    Inside your event handler function, call .css() on your 'input' element and pass it two inputs: the CSS element to change ('outline-color') and the color to change it to ('#FF0000').
+    Not all browsers have equal CSS implementation. So for this lesson, if you are using Firefox, you will need to first change the outline-style to solid.
+
+?
+Hint
+
+Your syntax should look like this:
+
+$(document).ready(function() {
+    $('elem').event(function() {
+        $(this).func('css','color');
+    });
+});
+
+Where 'elem' is the 'input' element you want to target, event is the .focus event, func is the .css function, 'css' is the 'outline-color' CSS selector, and 'color' is the hex color '#FF0000' (red).
+
+Answer:
+$(document).ready(function() {
+$('input').focus(function(){
+    $(this).css({
+        'outline-style':'solid',
+        'outline-color':'#FF0000'
+        });
+    });
+});
+
+_____
+
+
+The .keydown() Event
+
+You're not limited to mouse events in jQuery—you can trigger events using the keyboard, as well!
+
+The .keydown() event is triggered whenever a key on the keyboard is pressed. It only works on whatever page element has focus, so you'll need to click on the window containing your div before pressing a key in order for you to see its effects.
+
+Let's go ahead and combine our new event with a new effect: .animate()! We'll use this to move an object on the screen whenever we press a key.
+
+The .animate() effect takes two inputs: the animation to perform, and the time in which to perform the animation. Here's an example:
+
+$(document).ready(function() {
+   $('div').animate({left:'+=10px'},500);
+});
+
+This will take the first div it finds and move it ten pixels to the right. Remember, increasing the distance from the left margin moves something to the right; the += bit is just a shorthand for "take the existing number and add ten to it." In this case, it add ten pixels to the current distance from the left margin.
+Instructions
+
+After setting up with $(document).ready(), call the .keydown() event on $(document). (We want the whole document object to respond whenever a key is pressed.)
+
+Inside your .keydown() handler, .animate() your 'div' with the same inputs as above: {left:'+=10px'} and 500.
+?
+Hint
+
+Your code should look something like this:
+
+$(document).ready(function() {
+  $(document).event(function() {
+    $('div').effect(anim, duration);
+  });
+});
+
+Where event is your .keydown(), effect is .animate(), and the two inputs are the animation to be performed and the time it should take.
+
+Now your div should move to the right when any key is pressed!
+$(document).ready(function() {
+    $(document).keydown(function() {
+        $('div').animate({left: '+=10px'}, 500);
+    });
+});
+
+______
+
+
+More Practice with .animate()
+
+Let's get in a little more practice with the .animate() effect. That's the one with the slightly more complicated input—if we wanted to move a div 10 pixels down, we'd type something like
+
+$('div').animate({top:'+=10px'},500);
+
+Where the bit between curly braces says "hey, jQuery! Add 10 pixels to the current top margin," and the second input says "do it in 500 milliseconds!" (1,000 milliseconds = one second.)
+Instructions
+
+Going down?
+1. Let's begin begin by targeting our image inside $()
+2. Then let's animate our image to go down by 100px
+3. Let's make it happen in 1 second or 1000 milliseconds
+?
+Hint
+
+Your code should look something like this:
+
+$(document).ready(function() {
+    $('img').effect(anim, speed);
+});
+
+Where 'effect' is the .animate() effect, anim is the input that tells jQuery how far to move the image and in what direction, and speed is 1000 (1,000 milliseconds = 1 second).
+
+Answer:
+$(document).ready(function(){
+
+    // Fill in the blanks!
+    $('img').animate({ top: '+=100px'}, 1000);
+});
+
+_____
+
+
+
+Introducing: jQuery UI
+
+All right! Time to blaze new jQuery trails with a new jQuery library: jQuery UI.
+
+jQuery UI includes a number of ultra-fancy animations you can use to make your websites do incredible things.
+
+For instance, remember when we lamented that jQuery didn't include a .blowUp() effect for our planet Krypton? Well, that's still true. But jQuery UI has an .effect() effect, and we are totally going to give it the input 'explode'.
+
+Note that we've included an extra <script> tag in our HTML documents; this is used to include jQuery UI in our webpages. We don't have to do this with regular jQuery, since Codecademy automatically includes it for us.
+Instructions
+
+In the script.js tab, get your document .ready() and pass in a .click() event handler on your 'div'. Inside that, call .effect() on your div and give it the input 'explode'. Head over to the Result tab and click on Krypton to watch it explode!
+?
+Hint
+
+Your code should look something like this:
+
+$(document).ready(function() {
+    $('elem').event(function() {
+        $(this).effect('explode');
+    });
+});
+
+Where 'elem' is your 'div' and event is the .click event handler.
+ Answer:
+
+ $(document).ready(function() {
+
+    $('div').click(function(){
+
+        $(this).effect('explode');
+    
+    
+    });
+
+});
