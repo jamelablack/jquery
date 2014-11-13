@@ -295,3 +295,141 @@ Where 'elem' is your 'div' and event is the .click event handler.
     });
 
 });
+
+_____
+
+
+.bounce()
+
+Cool, right? But we can do much more than just blow things up.
+
+Another possible effect is 'bounce'. We give this as an input to .effect() just like 'explode', but we add an extra input to tell it how many times to bounce. This code will make our target 'div' bounce twice in 200 milliseconds:
+
+$('div').effect('bounce', {times:2}, 200);
+
+Instructions
+
+Change your 'explode' to a bounce, and make it so Krypton bounces three times in 500 milliseconds when you click on it.
+Answer:
+
+$(document).ready(function() {
+
+    $('div').click(function(){
+
+        $(this).effect('bounce', {times:3}, 500);
+    
+    
+    });
+
+});
+
+_____
+
+.slide()
+
+We can also make Krypton .slide() into view. Not surprisingly, we do this by calling the .effect() effect and passing in 'slide' as an input.
+
+If you want to see everything jQuery UI can do, you can check out the documentation here!
+Instructions
+
+Go ahead and change your 'bounce' to a 'slide', and remove the other two inputs.
+
+
+$(document).ready(function() {
+
+    $('div').click(function(){
+
+        $(this).effect('slide');
+    
+    
+    });
+
+});
+________
+
+
+Special Effects
+
+The .effect() effect has all kinds of magical goodness in it, but it's not the most amazing thing jQuery UI can do. The library has a number of built-in effects that can make your website look sleek and professional with surprisingly little code.
+
+You can learn more in the jQuery UI documentation!
+Instructions
+
+Check out the code in script.js, then click Save & Submit Code and head on over to the Result tab to see what jQuery UI can do for you. Be sure to click each accordion section!
+
+Answer:
+$(document).ready(function() {
+    $("#menu").accordion({collapsible: true, active: false});
+});
+
+____
+
+
+Drag Racing
+
+jQuery UI includes a .draggable() function that can make any HTML element draggable—you can click on it and move it anywhere on the page!
+
+We thought you might be tired of <div> blocks, so we made you a CSS car. We worked super hard on it.
+Instructions
+
+Call the .draggable() function on '#car'. Click Save & Submit Code, then go to the Result tab and drag your car around the page!
+Answer:
+$(document).ready(function() {
+    $('#car').draggable();
+
+});
+___-
+
+One Resize Fits All
+
+You didn't love our mega sweet car? We slaved over that for months! Back to regular <div>s for you!
+
+(Just kidding. That little guy took us decades of hard work.)
+Instructions
+
+Call the .resizable() function on your 'div'. Click Save & Submit Code, then go to the Result tab and resize your <div> to your heart's content!
+
+Answer:
+$(document).ready(function () {
+    $('div').resizable();
+
+
+
+});
+
+_____
+
+A Greater Selection
+
+Images and <div>s aren't the only elements we can target with jQuery UI—we can also enhance our ordered and unordered lists.
+
+Check out the HTML in index.html. We've set up a pretty nifty ordered list, but when it shows up in the Result tab, it's a little bland. With jQuery UI, we can fix that!
+Instructions
+
+In the script.js tab, get your document .ready() and call the .selectable() function on your 'ol'. Click Save & Submit Code, then click on the list items in your ordered list in the Result tab to see how much sleeker it looks.
+
+Answer:
+$(document).ready(function() {
+
+    $('ol').selectable();
+
+}); 	
+
+____
+
+
+Let's Sort Things Out
+
+Lists are great, and jQuery UI makes them greater. While selecting is cool, it doesn't necessarily make our list as dynamic as we'd like—what if we want to reorder the elements in our list?
+
+Enter the .sortable() function.
+Instructions
+
+In the script.js tab, replace your .selectable() with a .sortable(). Click Save & Submit Code, then rearrange your list items as you see fit!
+Answer:
+
+ $(document).ready(function() {
+
+    $('ol').sortable();
+
+});
